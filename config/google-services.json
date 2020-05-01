@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "982126971871",
+    "firebase_url": "https://detecto-c5967.firebaseio.com",
+    "project_id": "detecto-c5967",
+    "storage_bucket": "detecto-c5967.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982126971871:android:4c57fa88bbe37cfc29d26a",
+        "android_client_info": {
+          "package_name": "com.example.detecto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "982126971871-gvet4g2l0t0fujs1geu3rel3ljoufhvp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJwJ7l8Su0lFv1UkVcbneQaDqaIemr8r4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "982126971871-gvet4g2l0t0fujs1geu3rel3ljoufhvp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

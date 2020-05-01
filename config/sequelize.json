@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "root",
+    "password": "",
+    "database": "fds",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "timezone": "+05:45"
+  },
+  "test": {
+    "username": "root",
+    "password": "",
+    "database": "",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "timezone": "+05:45"
+  },
+  "production": {
+    "username": "",
+    "password": "",
+    "database": "",
+    "host": "",
+    "dialect": "mysql",
+    "timezone": "+05:45"
+  }
+}
