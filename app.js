@@ -34,18 +34,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 firebase.initializeApp({
-  credential: firebase.credential.cert(serviceAccount)
+  credential: firebase.credential.cert(serviceAccount),
 });
 
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use((req, res, next) => {
-  res.r = result => {
+  res.r = (result) => {
     res.json({
       isSuccess: true,
       status: 200,
       message: "success",
-      result
+      result,
     });
   };
   next();
@@ -59,11 +59,12 @@ app.use(cors());
 
 require("./routes")(app);
 
-app.use(function(err, req, res, next) {
-  console.log(err.stack);
-  res.status(500).send({ Error: err.stack });
+app.use(function (errCode, req, res, next) {
+  res.status(errCode).send({
+    isSuccess: false,
+    message: "something went wrong",
+  });
 });
-
 const PORT = 3000;
 
 app.listen(process.env.PORT || PORT, () => {

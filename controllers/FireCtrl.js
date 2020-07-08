@@ -9,10 +9,18 @@ const FireController = () => {
   const warnFire = async (req, res, next) => {
     try {
       const fcmToken = await userService().getFcmToken(req.userId);
-
+      console.log("--------------------------------------");
       console.log(fcmToken);
+      const fcmFireToken = await userService().getFireTokens();
 
-      await fireService().sendNotification(req.body, fcmToken);
+      if (fcmFireToken.length > 0 && fcmToken)
+        await fireService().sendNotification(req.body, [
+          fcmToken,
+          ...fcmFireToken,
+        ]);
+      else if (fcmToken) {
+        await fireService().sendNotification(req.body, fcmToken);
+      }
       // const userData = {
       //   name: req.body.name,
       //   avatar: !req.file ? null : req.file.location,
@@ -24,24 +32,24 @@ const FireController = () => {
       const profile = await userService().getUserProfile(req.userId);
 
       let result = await fireService().createFire(profile);
-
+      // console.log(result);
       return res.r(result);
     } catch (error) {
-      console.log(error);
+      console.log(error.results);
       return next(error);
     }
   };
 
   const getFireData = async (req, res, next) => {
     const fireData = await fireService().getFireInfo(req.userId);
-    console.log(fireData);
+    // console.log(fireData);
 
     return res.json(fireData);
   };
 
   const getAllFireData = async (req, res, next) => {
     const fireData = await fireService().getAllFireInfo(req.userId);
-    console.log(fireData);
+    // console.log(fireData);
 
     return res.json(fireData);
   };

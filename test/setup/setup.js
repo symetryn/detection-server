@@ -1,17 +1,14 @@
-const bodyParser = require('body-parser');
-const express = require('express');
-const cors = require('cors');
+const bodyParser = require("body-parser");
+const express = require("express");
+const cors = require("cors");
 
+const env = "test";
+const database = require("../../config/sequelize")[env];
 
-const env = 'test';
-const database = require('../../config/sequelize')[env];
-
-const models = require('../../models');
+const models = require("../../models");
 
 const beforeAction = async () => {
   const testapp = express();
-
-
 
   testapp.use(bodyParser.urlencoded({ extended: false }));
   testapp.use(bodyParser.json());
@@ -21,8 +18,8 @@ const beforeAction = async () => {
       res.json({
         isSuccess: true,
         status: 200,
-        description: '성공',
-        message: 'success',
+
+        message: "success",
         result,
       });
     };
@@ -32,12 +29,16 @@ const beforeAction = async () => {
   // CORS ALL ACCESS
   testapp.use(cors());
 
-  require('../../routes')(testapp);
+  require("../../routes")(testapp);
 
+  testapp.use(function (errCode, req, res, next) {
+    res.status(errCode).send({
+      isSuccess: false,
+      message: "something went wrong",
+    });
+  });
   // error handler
-  require('../../ErrorHandler')(testapp);
-
-
+  // require('../../ErrorHandler')(testapp);
 
   // await database.authenticate();
   // await database.drop();
@@ -54,6 +55,5 @@ const beforeAction = async () => {
 const afterAction = async () => {
   await models.sequelize.close();
 };
-
 
 module.exports = { beforeAction, afterAction };

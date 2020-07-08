@@ -28,9 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     long: {
       type: DataTypes.FLOAT,
     },
-    verification: {
-      type: DataTypes.BOOLEAN,
-    },
+
     email: {
       type: DataTypes.STRING,
     },

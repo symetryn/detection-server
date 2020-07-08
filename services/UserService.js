@@ -4,7 +4,6 @@ const util = require("../utils/Crypto");
 
 const userService = () => {
   const getSalt = (email) => {
-    console.log(email);
     return new Promise((resolve, reject) => {
       model.User.findOne({
         raw: true,
@@ -13,8 +12,6 @@ const userService = () => {
         },
         attributes: ["salt"],
       }).then((result) => {
-        console.log(result);
-
         result ? resolve(result.salt) : reject(1402);
       });
     });
@@ -56,7 +53,6 @@ const userService = () => {
 
   const signIn = (userData) => {
     return new Promise((resolve, reject) => {
-      console.log(userData);
       model.User.findOne({
         where: {
           [Op.and]: [{ email: userData.email }, { password: userData.pw }],
@@ -86,8 +82,17 @@ const userService = () => {
     return new Promise((resolve, reject) => {
       model.User.findOne({ where: { id } })
         .then((result) => {
-          console.log(result);
           resolve(result.fcmToken);
+        })
+        .catch((err) => reject(err));
+    });
+  };
+
+  const getFireTokens = () => {
+    return new Promise((resolve, reject) => {
+      model.User.findAll({ where: { role: "admin" } })
+        .then((result) => {
+          resolve(result.filter((item) => item.fcmToken));
         })
         .catch((err) => reject(err));
     });
@@ -101,6 +106,7 @@ const userService = () => {
     getUserProfile,
     updateFcmToken,
     getFcmToken,
+    getFireTokens,
   };
 };
 

@@ -10,7 +10,7 @@
   "test": {
     "username": "root",
     "password": "",
-    "database": "",
+    "database": "fds",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "timezone": "+05:45"

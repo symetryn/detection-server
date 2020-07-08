@@ -26,7 +26,6 @@ const UserController = () => {
         verification,
         email: req.body.email,
       };
-      console.log(salt);
 
       await userService().isUsedPhone(userData.phone);
       const user = await userService().signUp(userData);
@@ -42,6 +41,10 @@ const UserController = () => {
         token,
       };
     } catch (error) {
+      if (error == 1401)
+        return res
+          .status(400)
+          .json({ isSuccess: false, message: "Phone number already exists" });
       return next(error);
     }
 
@@ -50,8 +53,7 @@ const UserController = () => {
 
   const signin = async (req, res, next) => {
     let result;
-    console.log("----------");
-    console.log(req.body);
+
     try {
       const salt = await userService().getSalt(req.body.email);
 
@@ -60,10 +62,10 @@ const UserController = () => {
         pw: util.doCipher(req.body.password, salt).pw,
         fcmToken: req.body.fcmToken,
       };
-
-      console.log(userData);
+      console.log("tokens to be set", req.body.fcmToken);
       const user = await userService().signIn(userData);
-      await userService().updateFcmToken(userData);
+      if (!user) return Error("No");
+      if (userData.fcmToken) await userService().updateFcmToken(userData);
 
       const token = authService().issue({ id: user.id, role: user.role });
 
@@ -75,7 +77,8 @@ const UserController = () => {
       };
     } catch (error) {
       console.log(error);
-      return next(error);
+      res.status();
+      return next(500);
     }
 
     return res.status(200).json(result);
