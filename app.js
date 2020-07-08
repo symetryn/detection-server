@@ -8,7 +8,7 @@ const firebase = require("firebase-admin");
 const serviceAccount = require("./config/firebase_admin.json");
 const app = express();
 
-const swaggerUi = require("swagger-ui-express");
+// const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./swagger.json");
 
 const dotenv = require("dotenv").config();
