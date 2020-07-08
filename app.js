@@ -52,7 +52,7 @@ app.use((req, res, next) => {
 });
 
 // SwaggerUi
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+// app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // CORS ALL ACCESS
 app.use(cors());
