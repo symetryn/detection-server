@@ -79,6 +79,10 @@ const fireService = () => {
   const createFire = async (profile) => {
     profile.userId = profile.id;
     delete profile.id;
+    delete profile.createdAt;
+    delete profile.updatedAt;
+
+    console.log(profile);
     const result = await model.Fire.create(profile);
     return result;
   };
