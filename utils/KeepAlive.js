@@ -4,6 +4,7 @@ const fetch = require("node-fetch");
 const wakeUpDyno = (url, interval = 25, callback) => {
   const milliseconds = interval * 60000;
   console.log("Started Heroku Dyno keep alive");
+  fetch(url).then(() => console.log(`Fetching ${url}.`));
   setTimeout(() => {
     try {
       // HTTP GET request to the dyno's url

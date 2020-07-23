@@ -2,7 +2,6 @@
 
 const util = require("../utils/Crypto");
 const model = require("../models");
-const axios = require("axios");
 
 const authService = require("../services/AuthService");
 const userService = require("../services/UserService");
