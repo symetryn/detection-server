@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const firebase = require("firebase-admin");
 const serviceAccount = require("./config/firebase_admin.json");
+const keepAlive = require("./utils/KeepAlive");
 const app = express();
 
 // const swaggerUi = require("swagger-ui-express");
@@ -66,6 +67,7 @@ const PORT = 3000;
 
 app.listen(process.env.PORT || PORT, () => {
   model.sequelize.sync();
+  keepAlive("https://detectoserver.herokuapp.com/");
   console.info(`[ApiServer] Listening on Port ${PORT} / at ${env} Env`);
 });
 
