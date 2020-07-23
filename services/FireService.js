@@ -8,6 +8,8 @@ const fireService = () => {
   const sendNotification = (data, token) => {
     return new Promise((resolve, reject) => {
       data.click_action = "FLUTTER_NOTIFICATION_CLICK";
+
+      //notificaiton to send
       const payload = {
         notification: data,
       };
@@ -16,8 +18,7 @@ const fireService = () => {
         priority: "high",
         timeToLive: 60 * 60 * 24, // 1 day
       };
-      console.log("___________________________________________");
-      console.log(token);
+
       firebase
         .messaging()
         .sendToDevice(token, payload, options)

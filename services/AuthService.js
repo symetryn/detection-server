@@ -13,20 +13,15 @@ const authService = () => {
       if (err) {
         switch (err.message) {
           case "jwt expired":
-            return done(10401);
+            return done(401);
           case "invalid token":
-            return done(10403);
+            return done(403);
           default:
             return done(err.message);
         }
       } else {
         console.log(decoded);
         return decoded.id ? done(null, decoded.id) : done(401);
-        // if (user) {
-        //   return done(null, user.id);
-        // } else {
-        //   return done(401);
-        // }
       }
     });
   };

@@ -51,9 +51,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// SwaggerUi
-// app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
 // CORS ALL ACCESS
 app.use(cors());
 

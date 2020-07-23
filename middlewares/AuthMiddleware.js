@@ -6,11 +6,11 @@ const authService = require("../services/AuthService");
  *  Authenticate
  ********************/
 const AuthMiddleware = () => {
-  const auth = async (req, res, next) => {
+  const auth = async (req, next) => {
     if (!req.headers.authorization) {
       return next(401);
     }
-
+    //verify the JWT token from authorization header
     authService().verify(
       req.headers.authorization.split(" ")[1],
       (err, userId) => {

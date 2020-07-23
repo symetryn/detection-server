@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "sql12353428",
-    "password": "6fZcn9ETIj",
-    "database": "sql12353428",
-    "host": "sql12.freesqldatabase.com",
+    "username": "uunmmm8cayryehzt",
+    "password": "cn0tZXTJc7lgU6OI1Rvo",
+    "database": "b5lcalygw9bktxmko1l2",
+    "host": "b5lcalygw9bktxmko1l2-mysql.services.clever-cloud.com",
     "dialect": "mysql",
     "timezone": "+05:45"
   },
