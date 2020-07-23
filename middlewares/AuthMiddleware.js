@@ -6,7 +6,7 @@ const authService = require("../services/AuthService");
  *  Authenticate
  ********************/
 const AuthMiddleware = () => {
-  const auth = async (req, next) => {
+  const auth = async (req, res, next) => {
     if (!req.headers.authorization) {
       return next(401);
     }

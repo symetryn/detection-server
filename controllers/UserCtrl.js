@@ -14,6 +14,7 @@ const UserController = () => {
     try {
       const { pw, salt } = util.doCipher(req.body.password);
       const verification = req.body.role == "user";
+
       const userData = {
         phone: req.body.phone,
         name: req.body.name,
@@ -22,7 +23,7 @@ const UserController = () => {
         long: req.body.long,
         salt: salt,
         fcmToken: req.body.fcmtoken,
-        role: req.body.role,
+        role: "user",
         verification,
         email: req.body.email,
       };
