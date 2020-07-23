@@ -64,7 +64,10 @@ const UserController = () => {
       };
       console.log("tokens to be set", req.body.fcmToken);
       const user = await userService().signIn(userData);
-      if (!user) return Error("No");
+      if (!user)
+        return res
+          .status(401)
+          .json({ message: "invalid username or password" });
       if (userData.fcmToken) await userService().updateFcmToken(userData);
 
       const token = authService().issue({ id: user.id, role: user.role });
@@ -77,7 +80,7 @@ const UserController = () => {
       };
     } catch (error) {
       console.log(error);
-      res.status();
+
       return next(500);
     }
 
