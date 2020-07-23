@@ -1,5 +1,7 @@
 "use strict";
 
+const model = require("../models");
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define("User", {
     phone: {
@@ -34,8 +36,13 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  User.associate = (models) => {
-    // models.User.hasMany(models.Post);
+  User.associate = (db) => {
+    console.log("association ran");
+    // db.User.hasMany(db.Fire, { foreignKey: "userId", onDelete: "CASCADE" });
+    db.Fire.belongsTo(db.User, {
+      foreignKey: "userId",
+      onDelete: "CASCADE",
+    });
   };
 
   return User;

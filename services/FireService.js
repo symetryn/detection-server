@@ -1,7 +1,5 @@
 const model = require("../models");
 const sequelize = require("sequelize");
-const util = require("../utils/Crypto");
-
 const firebase = require("firebase-admin");
 
 const fireService = () => {
@@ -41,14 +39,23 @@ const fireService = () => {
         "lat",
         "long",
         [
-          sequelize.fn("date_format", sequelize.col("createdAt"), "%Y-%m-%d"),
+          sequelize.fn(
+            "date_format",
+            sequelize.col("Fire.createdAt"),
+            "%Y-%m-%d"
+          ),
           "date",
         ],
         [
-          sequelize.fn("date_format", sequelize.col("createdAt"), "%h:%m:%s"),
+          sequelize.fn(
+            "date_format",
+            sequelize.col("Fire.createdAt"),
+            "%h:%m:%s"
+          ),
           "time",
         ],
       ],
+      include: [model.User],
       raw: true,
     });
 
@@ -62,16 +69,25 @@ const fireService = () => {
         "lat",
         "long",
         [
-          sequelize.fn("date_format", sequelize.col("createdAt"), "%Y-%m-%d"),
+          sequelize.fn(
+            "date_format",
+            sequelize.col("Fire.createdAt"),
+            "%Y-%m-%d"
+          ),
           "date",
         ],
         [
-          sequelize.fn("date_format", sequelize.col("createdAt"), "%h:%m:%s"),
+          sequelize.fn(
+            "date_format",
+            sequelize.col("Fire.createdAt"),
+            "%h:%m:%s"
+          ),
           "time",
         ],
       ],
       raw: true,
-      order: [["createdAt", "DESC"]],
+      include: [{ model: model.User, attributes: ["phone", "name"] }],
+      // order: [["FirecreatedAt", "DESC"]],
     });
 
     return fireInfo;
