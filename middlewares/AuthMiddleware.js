@@ -5,6 +5,8 @@ const authService = require("../services/AuthService");
 /*******************
  *  Authenticate
  ********************/
+
+//for normal user
 const AuthMiddleware = () => {
   const auth = async (req, res, next) => {
     if (!req.headers.authorization) {
@@ -25,6 +27,7 @@ const AuthMiddleware = () => {
     );
   };
 
+  //for fire dept user
   const authFire = async (req, res, next) => {
     if (!req.headers.authorization) {
       return next(401);

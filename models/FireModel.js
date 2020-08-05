@@ -2,8 +2,8 @@
 
 module.exports = (sequelize, DataTypes) => {
   const Fire = sequelize.define("Fire", {
-    lat: DataTypes.FLOAT,
-    long: DataTypes.FLOAT,
+    lat: { type: DataTypes.FLOAT, allowNull: true },
+    long: { type: DataTypes.FLOAT, allowNull: true },
   });
 
   return Fire;

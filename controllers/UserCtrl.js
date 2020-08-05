@@ -30,6 +30,7 @@ const UserController = () => {
       await userService().isUsedPhone(userData.phone);
       const user = await userService().signUp(userData);
 
+      //create token
       const token = authService().issue({ id: user.id, role: user.role });
 
       result = {

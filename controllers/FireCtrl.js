@@ -43,14 +43,12 @@ const FireController = () => {
 
   const getFireData = async (req, res, next) => {
     const fireData = await fireService().getFireInfo(req.userId);
-    // console.log(fireData);
 
     return res.json(fireData);
   };
 
   const getAllFireData = async (req, res, next) => {
     const fireData = await fireService().getAllFireInfo(req.userId);
-    // console.log(fireData);
 
     return res.json(fireData);
   };
